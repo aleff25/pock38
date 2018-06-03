@@ -1,0 +1,8 @@
+{
+  "name": "pock38",
+  "app_id": "5f963aec",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
