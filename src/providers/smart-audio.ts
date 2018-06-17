@@ -1,0 +1,60 @@
+import { Injectable } from '@angular/core';
+import { NativeAudio } from '@ionic-native/native-audio';
+import { Platform } from 'ionic-angular';
+
+@Injectable()
+export class SmartAudioProvider {
+
+  audioType: string = 'html5';
+  sounds: any = [];
+
+  constructor(public nativeAudio: NativeAudio, platform: Platform) {
+    if (platform.is('cordova')) {
+      this.audioType = 'native';
+    }
+  }
+
+  preload(key, asset) {
+
+    console.log(key, asset);
+    if (this.audioType === 'html5') {
+
+      let audio = {
+        key: key,
+        asset: asset,
+        type: 'html5'
+      };
+
+      this.sounds.push(audio);
+
+    } else {
+
+      this.nativeAudio.preloadSimple(key, asset);
+
+      let audio = {
+        key: key,
+        asset: key,
+        type: 'native'
+      };
+
+      this.sounds.push(audio);
+    }
+  }
+
+  play(key) {
+
+    let audio = this.sounds.find((sound) => {
+      console.log(sound.key);
+      return sound.key === key;
+    });
+
+    if (audio.type === 'html5') {
+      let audioAsset = new Audio(audio.asset);
+      audioAsset.play();
+    } else {
+      this.nativeAudio.play(audio.key).then((res) => {
+        console.log(res);
+      }, err => console.log(err));
+    }
+  }
+}

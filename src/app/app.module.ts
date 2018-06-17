@@ -11,6 +11,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
+import { SmartAudioProvider } from '../providers/smart-audio';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { NativeAudio } from '@ionic-native/native-audio';
   providers: [
     StatusBar,
     SplashScreen,
+    SmartAudioProvider,
     NativeAudio,
+    SpeechRecognition,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
