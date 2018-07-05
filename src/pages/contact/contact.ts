@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { SmartAudioProvider } from '../../providers/smart-audio';
+import { TextToSpeech, TTSOptions } from '@ionic-native/text-to-speech';
 
 @Component({
   selector: 'page-contact',
@@ -8,27 +8,19 @@ import { SmartAudioProvider } from '../../providers/smart-audio';
 })
 export class ContactPage {
 
+  text: TTSOptions;
+
   constructor(public navCtrl: NavController,
-              private smartAudio: SmartAudioProvider) {
-    // this.nativeAudio.preloadComplex('button-beep', 'assets/sounds/Button-beep-tone.mp3', 1, 0, 0)
-    //   .then(() => console.log('button-beep'), err => console.log(err));
-    // this.nativeAudio.preloadComplex('button-click', 'assets/sounds/button-click-sound.mp3', 1, 0, 0)
-    //   .then(() => console.log('button-click'), err => console.log(err));
-    // this.nativeAudio.preloadComplex('button-noise', 'assets/sounds/Short-beep-noise.mp3', 1, 0, 0)
-    //   .then(() => console.log('button-noise'), err => console.log(err));
-  }
+              private tts: TextToSpeech) {
 
-  onClickBeep() {
-    this.smartAudio.play('click1');
+    this.text = {text: 'Olá, Tudo bem ?', locale: 'pt-BR'};
 
   }
 
-  onClickBeep2() {
-    this.smartAudio.play('click2');
-  }
 
-  onClickNoise() {
-    this.smartAudio.play('click2');
+  acao() {
+    this.tts.speak(this.text)
+      .then(() => console.log('Success'))
+      .catch((reason: any) => console.log(reason));
   }
-
 }

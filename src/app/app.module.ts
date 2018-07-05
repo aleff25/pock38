@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { SmartAudioProvider } from '../providers/smart-audio';
+import { TextToSpeech } from '@ionic-native/text-to-speech';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SmartAudioProvider } from '../providers/smart-audio';
     SmartAudioProvider,
     NativeAudio,
     SpeechRecognition,
+    TextToSpeech,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

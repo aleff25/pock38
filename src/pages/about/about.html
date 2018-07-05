@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar [color]="isRecoding ? 'danger' : 'primary'">
+  <ion-navbar [color]="isRecording ? 'danger' : 'primary'">
     <ion-title>
       Separar
     </ion-title>
@@ -10,7 +10,6 @@
 
   <button ion-button full (click)="getPermission()">Get Permission</button>
   <button ion-button full (click)="startListening()">Start Listening</button>
-  <button ion-button full (click)="stopListening()" *ngIf="isIos()">Stop Listening</button>
 
   <ion-card>
     <ion-card-header>This is what I understood...</ion-card-header>
